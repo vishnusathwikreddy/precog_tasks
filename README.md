@@ -15,15 +15,15 @@ I have also tested all the models with 4 words in their top 10 nearest similarit
 
 <img width="200" alt="Screenshot 1946-05-20 at 4 46 45" src="https://github.com/user-attachments/assets/2084e071-aea6-4a01-a1bb-870fce2e7996"> <img width="200" alt="Screenshot 1946-05-20 at 4 46 58" src="https://github.com/user-attachments/assets/4d7bae99-69a7-444e-991d-be83c1313b61"> <img width="200" alt="Screenshot 1946-05-20 at 4 46 19" src="https://github.com/user-attachments/assets/bb7d6132-1075-4ff1-9df1-9b1a5d7a3af7"> <img width="200" alt="Screenshot 1946-05-20 at 4 46 37" src="https://github.com/user-attachments/assets/26f1085a-740d-4fc9-b4c8-63e2b000df00">
 
-Observation : Word2Vec models gives good embeddings that captures meaning of words better than FastText model. 
+Observation: Word2Vec models give good embeddings that capture meaning of words better than FastText model. 
 
-I have also tried to create word embeddings using tensorflow embedding layer. I added embedding layer with LSTMs and Dense layers. I tried to train the model with next word prediction so that it can adjust the word embeddings with back propagation but it failed very badly. So I did not include that code in the tasks.
+I have also tried to create word embeddings using TensorFlow embedding layer. I added an embedding layer with LSTMs and Dense layers. I tried to train the model with next-word prediction so that it could adjust the word embeddings with backpropagation but it failed very badly. So I did not include that code in the tasks.
 
 Task - 2 Phrase similarity.
 
 In this task word embeddings have to be converted into phrase embeddings, and then a binary classifier has to be built to classify them as similar(1) or not (0).
 
-Phrases generally don't carry any much semantic meaning or context compared to sentences. So for every phrase in the dataset, stop words are removed and each word is converted into (300,) dimensional vector. For OOV words, a zero vector of (300,) dimension is assigned. There are 7004 training examples, 1000 val examples and 2000 test examples in the dataset.
+Phrases generally don't carry much semantic meaning or context compared to sentences. So for every phrase in the dataset, stop words are removed and each word is converted into (300,) dimensional vector. For OOV words, a zero vector of (300,) dimension is assigned. There are 7004 training examples, 1000 val examples and 2000 test examples in the dataset.
 
 For generating embeddings I have downloaded 'wiki-news-300d-1M.vec.zip'  from 'https://fasttext.cc/docs/en/english-vectors.html'. It is a pretrained  FastText model file containing word embeddings.
 
@@ -50,13 +50,13 @@ Even after using two different techniques, I am getting the exact same results e
 
 Task-2 Sentence Similarity :
 
-This part is started with data preprocessing. Stop words are removed first and all the unnecessary symbols are removed and the text is converted into small letters. The average number of words in each of the sentences in all the data is 21. The max length is set to 25 and all the with sentences more than 25 words are truncated and the sentences with less than 25 words are padded with the 'EXTRA_TOKEN' word. The number 25 is fixed after many trial and errors. The training, validation, and testing data are of lengths 15000, 4000, and 8000 respectively. Only 15000 training examples are taken because the colab is crashing. These numbers are fixed after several train and errors.
+This part is started with data preprocessing. Stop words are removed first and all the unnecessary symbols are removed and the text is converted into small letters. The average number of words in each of the sentences in all the data is 21. The max length is set to 25 and all the with sentences more than 25 words are truncated and the sentences with less than 25 words are padded with the 'EXTRA_TOKEN' word. The number 25 is fixed after many trials and errors. The training, validation, and testing data are of lengths 15000, 4000, and 8000 respectively. Only 15000 training examples are taken because the colab is crashing. These numbers are fixed after several train and errors.
 
 Now the embeddings are generated with the same model used in the previous task. for the 'EXTRA_TOKEN' token and OOV words vector with zeros is assigned. 
 
 As the sentences carry semantic and contextual information, it is not a good idea to average the embeddings. There is a need to capture the information in the sentence. So LSTM with dense layers is used and machine learning models are also used.
 
-Both the input sentences are passed through the LSTM layer seperately and the hidden states are stored. Those hidden states are concatinated and passed to the dense layers.
+Both the input sentences are passed through the LSTM layer separately and the hidden states are stored. Those hidden states are concatenated and passed to the dense layers.
 
 <img width="667" alt="Screenshot 1946-05-20 at 4 46 38" src="https://github.com/user-attachments/assets/efc38656-cb3b-4285-9f80-94ce8bb00178">
 
@@ -73,6 +73,13 @@ For ML models, the inputs are first flattened and PCA is applied to reduce the d
 
 I tried to increase the accuracy of the Neural network model by increasing the number of epochs and data. RAM crashes if data is increased and overfits if the epochs are increased.
 I feel the results can be improved if the sentences are not truncated and the training data is increased.
+
+
+Paper Reading Task:
+The slides for the paper reading task are at '\paper_reading\paper_reading_precog.pdf'
+
+The pdf has three slides of summary of the paper, and one slide on strengths, weaknesses and possible improvement of the paper respectively.
+
 
 Resources used:
 https://medium.com/analytics-vidhya/understanding-embedding-layer-in-keras-bbe3ff1327ce <br>
