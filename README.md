@@ -63,5 +63,11 @@ For ML models, the inputs are first flattened and PCA is applied to reduce the d
 I tried to increase the accuracy of the Neural network model by increasing the number of epochs and data. RAM crashes if data is increased and overfits if the epochs are increased.
 I feel the results can be improved if the sentences are not truncated and the training data is increased.
 
+Resources used:
+https://medium.com/analytics-vidhya/understanding-embedding-layer-in-keras-bbe3ff1327ce
+https://youtu.be/Br-Ozg9D4mc?si=kW9zxowdsrSQEqln
+https://youtu.be/hQwFeIupNP0?si=tYfjS6weePPFdOA4
+https://www.reddit.com/r/EnglishLearning/comments/xt0fq2/whats_the_difference_between_a_phrase_and_a/
+https://medium.com/coders-camp/40-machine-learning-algorithms-with-python-3defd764b961
 
 
