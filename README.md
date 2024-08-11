@@ -15,7 +15,9 @@ I have also tested all the models with 4 words in their top 10 nearest similarit
 
 <img width="200" alt="Screenshot 1946-05-20 at 4 46 45" src="https://github.com/user-attachments/assets/2084e071-aea6-4a01-a1bb-870fce2e7996"> <img width="200" alt="Screenshot 1946-05-20 at 4 46 58" src="https://github.com/user-attachments/assets/4d7bae99-69a7-444e-991d-be83c1313b61"> <img width="200" alt="Screenshot 1946-05-20 at 4 46 19" src="https://github.com/user-attachments/assets/bb7d6132-1075-4ff1-9df1-9b1a5d7a3af7"> <img width="200" alt="Screenshot 1946-05-20 at 4 46 37" src="https://github.com/user-attachments/assets/26f1085a-740d-4fc9-b4c8-63e2b000df00">
 
+Observation : Word2Vec models gives good embeddings that captures meaning of words better than FastText model. 
 
+I have also tried to create word embeddings using tensorflow embedding layer. I added embedding layer with LSTMs and Dense layers. I tried to train the model with next word prediction so that it can adjust the word embeddings with back propagation but it failed very badly. So I did not include that code in the tasks.
 
 Task - 2 Phrase similarity.
 
@@ -34,6 +36,8 @@ For converting the word embeddings into phrase embeddings, I have tried two meth
 
 2. Weighted averaging the word embeddings of the phrase to make it into a single vector. Later the vector is flattened and passed through SVM, RandomForest, Logistic regression, K-NN models. Both validation and test accuracies are recorded.
 weight of the word is the count of the word divided by the total number of words this includes all the phrases in train, val and test data. There is no need to worry about the usual repeating words because stop words are repeated
+
+
                 Weight of word = (No of times word repeated)/(Total number of words)
 
                 Weighted average = sum(weight of word* embedding of word)/ total number of words.
@@ -50,9 +54,16 @@ This part is started with data preprocessing. Stop words are removed first and a
 
 Now the embeddings are generated with the same model used in the previous task. for the 'EXTRA_TOKEN' token and OOV words vector with zeros is assigned. 
 
-As the sentences carry semantic and contextual information, it is not a good idea to average embeddings. There is a need to capture the information in the sentence. So LSTM with dense layers is used and machine learning models are also used.
+As the sentences carry semantic and contextual information, it is not a good idea to average the embeddings. There is a need to capture the information in the sentence. So LSTM with dense layers is used and machine learning models are also used.
+
+Both the input sentences are passed through the LSTM layer seperately and the hidden states are stored. Those hidden states are concatinated and passed to the dense layers.
+
+<img width="667" alt="Screenshot 1946-05-20 at 4 46 38" src="https://github.com/user-attachments/assets/efc38656-cb3b-4285-9f80-94ce8bb00178">
+
 
 This is the summary of the LSTM model.
+
+
 <img width="942" alt="Screenshot 1946-05-20 at 4 46 30" src="https://github.com/user-attachments/assets/e162b1ea-32af-47ba-948b-2788f81b691a">
 
 
@@ -64,10 +75,10 @@ I tried to increase the accuracy of the Neural network model by increasing the n
 I feel the results can be improved if the sentences are not truncated and the training data is increased.
 
 Resources used:
-https://medium.com/analytics-vidhya/understanding-embedding-layer-in-keras-bbe3ff1327ce
-https://youtu.be/Br-Ozg9D4mc?si=kW9zxowdsrSQEqln
-https://youtu.be/hQwFeIupNP0?si=tYfjS6weePPFdOA4
-https://www.reddit.com/r/EnglishLearning/comments/xt0fq2/whats_the_difference_between_a_phrase_and_a/
+https://medium.com/analytics-vidhya/understanding-embedding-layer-in-keras-bbe3ff1327ce <br>
+https://youtu.be/Br-Ozg9D4mc?si=kW9zxowdsrSQEqln <br>
+https://youtu.be/hQwFeIupNP0?si=tYfjS6weePPFdOA4 <br>
+https://www.reddit.com/r/EnglishLearning/comments/xt0fq2/whats_the_difference_between_a_phrase_and_a/ <br>
 https://medium.com/coders-camp/40-machine-learning-algorithms-with-python-3defd764b961
 
 
